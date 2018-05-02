@@ -2,6 +2,7 @@ const inq = require("inquirer");
 const colors = require("colors");
 const wordArr = require('./wordArr.js');
 const Word = require('./word.js');
+const clear = require('clear');
 
 const guessPrompt = {
     type: 'input',
@@ -100,6 +101,7 @@ function newGame() {
 }
 
 function printGameBoard() {
+    clear();
     if(guessesLeft >= 7) {
         console.log('\n' + currentWord.showWord() .bold.green);
         console.log(colors.grey("Wrong Guesses: " + wrongGuesses));
@@ -124,6 +126,7 @@ function mainMenu() {
             choices: ["Play", "Instructions", "Credits", "Exit"]
         }
     ]).then(function(answer){
+        clear();
         switch(answer.choice) {
             case 'Play':
                 return newGame();
